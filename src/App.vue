@@ -29,15 +29,18 @@ export default {
     },
 
     prevPage(url) {
-      console.log(url);
+      //console.log(url);
+      this.getProjects(url);
     },
 
     nextPage(url) {
-      console.log(url);
+      //console.log(url);
+      this.getProjects(url);
     },
 
     goToPage(url) {
-      console.log(url);
+      //console.log(url);
+      this.getProjects(url);
     }
   },
 
@@ -54,7 +57,7 @@ export default {
   <main>
     <div class="container">
       <div class="row row-cols-3">
-        <ProjectCard v-for="project in projects.data" :project="project" />
+        <ProjectCard v-for="project in projects.data" :project="project" :url="base_api_url" />
         <!-- <div class="project" v-for="project in projects.data">{{ project.title }}</div> -->
       </div>
     </div>
@@ -64,22 +67,24 @@ export default {
 
         <!-- prev -->
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous" @click="prevPage(projects.prev_page_url)">
+          <button class="page-link" href="#" aria-label="Previous" @click="prevPage(projects.prev_page_url)"
+            :disabled="projects.prev_page_url == null">
             <span aria-hidden="true">&laquo;</span>
-          </a>
+          </button>
         </li>
 
         <!-- pages -->
         <li class="page-item" aria-current="page" v-for="page in projects.last_page"
           @click="goToPage(base_api_url + base_projects_url + `?page=${page}`)">
-          <a class="page-link" href="#">{{ page }}</a>
+          <button class="page-link">{{ page }}</button>
         </li>
 
         <!-- next -->
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next" @click="nextPage(projects.next_page_url)">
+          <button class="page-link" href="#" aria-label="Next" @click="nextPage(projects.next_page_url)"
+            :disabled="projects.next_page_url == null">
             <span aria-hidden="true">&raquo;</span>
-          </a>
+          </button>
         </li>
       </ul>
     </nav>
