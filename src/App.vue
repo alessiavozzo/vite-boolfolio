@@ -74,8 +74,8 @@ export default {
         </li>
 
         <!-- pages -->
-        <li class="page-item" aria-current="page" v-for="page in projects.last_page"
-          @click="goToPage(base_api_url + base_projects_url + `?page=${page}`)">
+        <li class="page-item" aria-current="page" :class="{ 'active': page == projects.current_page }"
+          v-for="page in projects.last_page" @click="goToPage(base_api_url + base_projects_url + `?page=${page}`)">
           <button class="page-link">{{ page }}</button>
         </li>
 
