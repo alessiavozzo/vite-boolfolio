@@ -26,6 +26,14 @@ export default {
           this.projects = response.data.projects;
         })
         .catch(error => console.log(error));
+    },
+
+    prevPage() {
+      console.log(url);
+    },
+
+    nextPage() {
+      console.log(url);
     }
   },
 
@@ -46,6 +54,32 @@ export default {
         <!-- <div class="project" v-for="project in projects.data">{{ project.title }}</div> -->
       </div>
     </div>
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+
+        <!-- prev -->
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous" @click="prevPage(projects.prev_page_url)">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        <!-- pages -->
+        <li class="page-item" aria-current="page" v-for="page in projects.last_page">
+          <a class="page-link" href="#">{{ page }}</a>
+        </li>
+
+        <!-- next -->
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next" @click="nextPage(projects.next_page_url)">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
   </main>
   <footer>footer</footer>
 
