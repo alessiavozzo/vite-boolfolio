@@ -13,7 +13,7 @@ export default {
     return {
       projects: [],
       base_api_url: 'http://127.0.0.1:8000',
-      base_posts_url: '/api/projects',
+      base_projects_url: '/api/projects',
     }
   },
 
@@ -28,17 +28,21 @@ export default {
         .catch(error => console.log(error));
     },
 
-    prevPage() {
+    prevPage(url) {
       console.log(url);
     },
 
-    nextPage() {
+    nextPage(url) {
+      console.log(url);
+    },
+
+    goToPage(url) {
       console.log(url);
     }
   },
 
   mounted() {
-    let url = this.base_api_url + this.base_posts_url;
+    let url = this.base_api_url + this.base_projects_url;
     this.getProjects(url);
   }
 }
@@ -66,7 +70,8 @@ export default {
         </li>
 
         <!-- pages -->
-        <li class="page-item" aria-current="page" v-for="page in projects.last_page">
+        <li class="page-item" aria-current="page" v-for="page in projects.last_page"
+          @click="goToPage(base_api_url + base_projects_url + `?page=${page}`)">
           <a class="page-link" href="#">{{ page }}</a>
         </li>
 
