@@ -1,12 +1,14 @@
 <script>
 import axios from 'axios';
 import ProjectCard from "./components/ProjectCard.vue";
+import AppHeader from "./components/AppHeader.vue";
 
 
 export default {
   name: 'App',
   components: {
-    ProjectCard
+    ProjectCard,
+    AppHeader
   },
 
   data() {
@@ -53,7 +55,7 @@ export default {
 
 <template>
 
-  <header>header</header>
+  <AppHeader />
   <main>
     <div class="container">
       <div class="row row-cols-3">
@@ -67,7 +69,7 @@ export default {
 
         <!-- prev -->
         <li class="page-item">
-          <button class="page-link" href="#" aria-label="Previous" @click="prevPage(projects.prev_page_url)"
+          <button class="page-link" aria-label="Previous" @click="prevPage(projects.prev_page_url)"
             :disabled="projects.prev_page_url == null">
             <span aria-hidden="true">&laquo;</span>
           </button>
@@ -81,7 +83,7 @@ export default {
 
         <!-- next -->
         <li class="page-item">
-          <button class="page-link" href="#" aria-label="Next" @click="nextPage(projects.next_page_url)"
+          <button class="page-link" aria-label="Next" @click="nextPage(projects.next_page_url)"
             :disabled="projects.next_page_url == null">
             <span aria-hidden="true">&raquo;</span>
           </button>
