@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'AppHeader'
+}
+</script>
+
 <template>
     <header>
 
@@ -9,18 +15,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav gap-3">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                            <router-link :to="{ name: 'home' }">Home</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Projects</a>
+                            <router-link :to="{ name: 'projects' }">Projects</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">About</a>
+                            <router-link :to="{ name: 'about' }">About</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Contacts</a>
+                            <router-link :to="{ name: 'contacts' }">Contacts</router-link>
                         </li>
 
                     </ul>
@@ -35,10 +41,6 @@
     </header>
 </template>
 
-<script>
-export default {
 
-}
-</script>
 
 <style scoped></style>
