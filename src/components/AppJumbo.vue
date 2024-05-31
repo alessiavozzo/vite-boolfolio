@@ -62,9 +62,6 @@ export default {
 
     mounted() {
 
-        /* costruttore */
-
-
         const canvas = this.$refs.canvas;
         this.canvasContext = canvas.getContext('2d');
 
@@ -74,7 +71,7 @@ export default {
 
         /* genero le bolle con un raggio casuale */
         for (let i = 0; i < this.bubblesNumber; i++) {
-            let radius = this.randomNumber(5, 20);
+            let radius = this.randomNumber(10, 35);
             let diameter = radius * 2;
 
             /*  */
@@ -106,11 +103,16 @@ export default {
 </script>
 
 <template>
-    <div class="try" style="width: 100%; height: 800px;">
+    <section id="jumbotron" style="width: 100%; height: 800px;">
         <canvas @mousemove="updateMousePosition" ref="canvas" style="width: 100%; height: 100%;"></canvas>
-    </div>
+    </section>
 </template>
 
 
 
-<style scoped></style>
+<style scoped>
+#jumbotron {
+    background-color: var(--portfolio-bg);
+    padding-top: 80px;
+}
+</style>

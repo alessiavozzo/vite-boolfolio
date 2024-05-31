@@ -5,42 +5,78 @@ export default {
 </script>
 
 <template>
+
     <header>
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav gap-3">
-                        <li class="nav-item">
-                            <router-link :to="{ name: 'home' }">Home</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="{ name: 'projects' }">Projects</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="{ name: 'about' }">About</router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="{ name: 'contacts' }">Contacts</router-link>
-                        </li>
 
-                    </ul>
+        <nav class="navbar">
+
+            <div class="container">
+                <div class="logo">
+                    <img src="/img/AVlogo.svg" alt="">
                 </div>
+
+                <ul class="nav-right">
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'home' }">Home</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'projects' }">Projects</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'about' }">About</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'contacts' }">Contacts</router-link>
+                    </li>
+
+                </ul>
             </div>
         </nav>
-
-
-
-
-
     </header>
 </template>
 
 
 
-<style scoped></style>
+<style scoped>
+header {
+    height: 80px;
+    background-color: var(--portfolio-bg);
+    box-shadow: 0px 5px 13px 2px var(--portfolio-main);
+    z-index: 10000;
+    position: fixed;
+    width: 100%;
+
+    .navbar {
+        height: 100%;
+        padding: 0.75rem;
+
+        .container {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .logo {
+                height: 100%;
+
+                img {
+                    height: 100%;
+                }
+            }
+        }
+
+        .nav-right {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+
+            a {
+                text-decoration: none;
+                color: var(--portfolio-main);
+            }
+        }
+
+    }
+}
+</style>
