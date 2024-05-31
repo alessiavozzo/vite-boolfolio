@@ -16,3 +16,9 @@ Utilizziamo questo componente per visualizzare tutti i progetti ricevuti tramite
 Gestire la paginazione dei risultati
 
 
+## PARTE 2
+- installazione di vue router
+- creazione router.js
+- importazione del file router.js in main.js
+- utilizzo del plugin router sull'istanza vue creata
+- realizzazione pagine home, projects, about, contacts
