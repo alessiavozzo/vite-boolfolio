@@ -140,17 +140,4 @@ h2:has(span:hover) {
     padding-top: 3rem;
     text-align: center;
 }
-
-.btn {
-    padding: 1rem 2rem;
-    border: 1px solid var(--portfolio-main);
-    border-radius: 5px;
-    color: var(--portfolio-main);
-    background-color: transparent;
-    cursor: pointer;
-
-    &:hover {
-        background-color: var(--portfolio-main-lighter);
-    }
-}
 </style>

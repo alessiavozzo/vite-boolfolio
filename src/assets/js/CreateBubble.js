@@ -29,9 +29,9 @@ class CreateBubble {
         /* colore della bolla quando ci passo sopra */
         const hoverColor =
         {
-            r: 0,
-            g: 234,
-            b: 150
+            r: 71,
+            g: 229,
+            b: 172
         };
 
         /* devo calcolare i valori intermedi per r, g e b per quando fa la transizione. Formula generica: media=primo + intensità(ultimo - primo). L'intensità del colore va da 0 a 1 e cambia in base alla dimensione della bolla */

@@ -1,6 +1,28 @@
 <script>
 export default {
-    name: 'AppHeader'
+    name: 'AppHeader',
+    data() {
+        return {
+            menu: [
+                {
+                    text: 'Home',
+                    route: 'home'
+                },
+                {
+                    text: 'Projects',
+                    route: 'projects'
+                },
+                {
+                    text: 'About',
+                    route: 'about'
+                },
+                {
+                    text: 'Contacts',
+                    route: 'contacts'
+                },
+            ]
+        }
+    }
 }
 </script>
 
@@ -17,19 +39,9 @@ export default {
                 </div>
 
                 <ul class="nav-right">
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'home' }">Home</router-link>
+                    <li class="nav-item" v-for="option in menu">
+                        <router-link :to="{ name: option.name }">{{ option.text }}</router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'projects' }">Projects</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'about' }">About</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'contacts' }">Contacts</router-link>
-                    </li>
-
                 </ul>
             </div>
         </nav>
