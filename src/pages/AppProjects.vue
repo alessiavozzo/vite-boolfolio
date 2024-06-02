@@ -13,6 +13,8 @@ export default {
             projects: [],
             base_api_url: 'http://127.0.0.1:8000',
             base_projects_url: '/api/projects',
+            currentPage: 1,
+            lastPage: null
         }
     },
 
@@ -22,25 +24,24 @@ export default {
                 .get(url)
                 .then(response => {
                     console.log(response);
-                    this.projects = response.data.projects;
+                    console.log(response.data.projects);
+                    /* se levo ... mi aggiunge tutto l'array dentro l'array, io voglio elemento per elemento */
+                    this.projects.push(...response.data.projects.data);
+                    console.log(this.projects);
+                    this.currentPage = response.data.projects.current_page;
+                    this.lastPage = response.data.projects.last_page;
                 })
                 .catch(error => console.log(error));
         },
 
-        prevPage(url) {
-            //console.log(url);
-            this.getProjects(url);
-        },
-
-        nextPage(url) {
-            //console.log(url);
-            this.getProjects(url);
-        },
-
-        goToPage(url) {
-            //console.log(url);
-            this.getProjects(url);
+        showMore() {
+            if (this.currentPage < this.lastPage) {
+                let nextPage = this.currentPage + 1;
+                let url = `${this.base_api_url}${this.base_projects_url}?page=${nextPage}`
+                this.getProjects(url);
+            }
         }
+        /* mi sa che mi serve un'altra chiamata per poter fare anche lo show less perchè mi serve un array temporaneo in cui salvare i dati aggiunti con showMore */
     },
 
     mounted() {
@@ -59,45 +60,20 @@ export default {
                 <i class="fa-solid fa-gear"></i>
             </h2>
             <div class="row">
-                <div class="col-4" v-for="project in projects.data">
+                <div class="col-4" v-for="project in projects">
                     <ProjectCard :project="project" :url="base_api_url" />
                 </div>
 
             </div>
         </div>
+
+        <div class="show-more">
+            <button class="btn" v-if="currentPage < lastPage" @click="showMore">Show more</button>
+        </div>
+
     </section>
 
 
-
-
-
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-
-            <!-- prev -->
-            <li class="page-item">
-                <button class="page-link" aria-label="Previous" @click="prevPage(projects.prev_page_url)"
-                    :disabled="projects.prev_page_url == null">
-                    <span aria-hidden="true">&laquo;</span>
-                </button>
-            </li>
-
-            <!-- pages -->
-            <li class="page-item" aria-current="page" :class="{ 'active': page == projects.current_page }"
-                v-for="page in projects.last_page"
-                @click="goToPage(base_api_url + base_projects_url + `?page=${page}`)">
-                <button class="page-link">{{ page }}</button>
-            </li>
-
-            <!-- next -->
-            <li class="page-item">
-                <button class="page-link" aria-label="Next" @click="nextPage(projects.next_page_url)"
-                    :disabled="projects.next_page_url == null">
-                    <span aria-hidden="true">&raquo;</span>
-                </button>
-            </li>
-        </ul>
-    </nav>
 </template>
 
 
@@ -157,6 +133,24 @@ h2:has(span:hover) {
 
     .fa-gear {
         transform: rotate(360deg);
+    }
+}
+
+.show-more {
+    padding-top: 3rem;
+    text-align: center;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border: 1px solid var(--portfolio-main);
+    border-radius: 5px;
+    color: var(--portfolio-main);
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--portfolio-main-lighter);
     }
 }
 </style>

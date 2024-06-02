@@ -9,6 +9,10 @@
     /* rgb(0 234 150) */
     #47E5AC;
   ;
+  --portfolio-main-lighter:
+
+    #47e5ab2f;
+  ;
   --portfolio-card: #172A45;
   --portfolio-light: #CCD6F6;
   --portfolio-text-secondary: #8892B0;
