@@ -42,7 +42,7 @@ export default {
 header {
     height: 80px;
     background-color: var(--portfolio-bg);
-    box-shadow: 0px 5px 13px 2px var(--portfolio-main);
+    box-shadow: 0px 1px 9px 1px var(--portfolio-main);
     z-index: 10000;
     position: fixed;
     width: 100%;

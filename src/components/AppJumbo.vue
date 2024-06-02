@@ -18,7 +18,7 @@ export default {
             /* mi serve il contesto del canvas per poter fare la grafica 2D sul tag canvas. E' un oggetto che mi dà accesso ai metodi beginPath(), arc(), fill() etc così posso disegnarci le palline*/
             canvasContext: null,
 
-            bubblesNumber: 80,
+            bubblesNumber: 50,
 
 
         }

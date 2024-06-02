@@ -51,12 +51,25 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <div class="row row-cols-3">
-            <ProjectCard v-for="project in projects.data" :project="project" :url="base_api_url" />
-            <!-- <div class="project" v-for="project in projects.data">{{ project.title }}</div> -->
+    <section id="projects">
+        <div class="container">
+            <h2>
+                <i class="fa-solid fa-gear"></i>
+                <span>MY PROJECTS</span>
+                <i class="fa-solid fa-gear"></i>
+            </h2>
+            <div class="row">
+                <div class="col-4" v-for="project in projects.data">
+                    <ProjectCard :project="project" :url="base_api_url" />
+                </div>
+
+            </div>
         </div>
-    </div>
+    </section>
+
+
+
+
 
     <nav aria-label="Page navigation">
         <ul class="pagination">
@@ -89,4 +102,61 @@ export default {
 
 
 
-<style scoped></style>
+<style scoped>
+#projects {
+    padding-top: 80px;
+
+    .container {
+        max-width: 1200px;
+
+        .row {
+            gap: 3rem;
+            justify-content: center;
+
+            .col-4 {
+                width: calc(((100% / 12) * 4) - 3rem);
+            }
+        }
+    }
+
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem 0;
+    color: var(--portfolio-light);
+
+    &::before,
+    &::after {
+        content: '';
+        width: 10%;
+        height: 3px;
+        display: block;
+        background-color: currentColor;
+        transition: all 1s;
+    }
+
+    .fa-gear {
+        transition: all 5s;
+    }
+}
+
+
+h2:has(span:hover) {
+
+    &::before {
+        width: 30%;
+    }
+
+    &::after {
+        width: 30%;
+    }
+
+    .fa-gear {
+        transform: rotate(360deg);
+    }
+}
+</style>
