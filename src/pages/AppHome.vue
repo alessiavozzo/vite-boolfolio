@@ -10,20 +10,20 @@ export default {
     },
     data() {
         return {
-            hasScrolled: false
+
         }
     },
     methods: {
         scrollToNextSection() {
-            console.log('next section');
-            console.log(this.$refs.bestProjects);
+            //console.log('next section');
+            //console.log(this.$refs.bestProjects);
             const nextSection = this.$refs.bestProjects;
             if (nextSection) {
                 nextSection.scrollIntoView({ behavior: 'smooth' })
             }
         },
 
-    }
+    },
 
 }
 </script>

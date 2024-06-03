@@ -39,7 +39,7 @@ export default {
                 </div>
 
                 <ul class="nav-right">
-                    <li class="nav-item" v-for="option in menu">
+                    <li class="nav-item space-mono-regular" v-for="option in menu">
                         <router-link :to="{ name: option.route }">{{ option.text }}</router-link>
                     </li>
                 </ul>

@@ -77,7 +77,7 @@ export default {
         </div>
 
         <div class="show-more">
-            <button class="btn" v-if="currentPage < lastPage" @click="showMore">Show more</button>
+            <button class="btn fira-mono-regular" v-if="currentPage < lastPage" @click="showMore">SHOW MORE</button>
         </div>
 
     </section>

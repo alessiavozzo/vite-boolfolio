@@ -44,7 +44,7 @@ export default {
             </div>
 
             <!-- tech -->
-            <div class="technologies">
+            <div class="technologies fira-mono-regular">
                 <span v-for="tech in project.technologies">
                     {{ tech.name }}
                 </span>
@@ -145,6 +145,7 @@ export default {
             color: var(--portfolio-main);
             gap: 0.5rem;
             padding-bottom: 1rem;
+            font-size: 0.8rem;
 
             span {
                 border: 1px solid var(--portfolio-main);

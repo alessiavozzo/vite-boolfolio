@@ -42,6 +42,7 @@ export default {
                 <div class="card">
                     {{ project.id }}
                     {{ project.title }}
+                    {{ project.description }}
                     <!-- {{ project.project_image }}
                     {{ state.base_api_url + '/storage/' + project.project_image }} -->
 
