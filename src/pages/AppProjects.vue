@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { state } from '../state.js';
 import { waveform } from 'ldrs'
 
 import ProjectCard from "../components/ProjectCard.vue";
@@ -11,9 +12,8 @@ export default {
     },
     data() {
         return {
+            state: state,
             projects: [],
-            base_api_url: 'http://127.0.0.1:8000',
-            base_projects_url: '/api/projects',
             currentPage: 1,
             lastPage: null,
             loading: true
@@ -40,7 +40,7 @@ export default {
         showMore() {
             if (this.currentPage < this.lastPage) {
                 let nextPage = this.currentPage + 1;
-                let url = `${this.base_api_url}${this.base_projects_url}?page=${nextPage}`
+                let url = `${this.state.base_api_url}${this.state.base_projects_url}?page=${nextPage}`
                 this.getProjects(url);
             }
         }
@@ -48,7 +48,7 @@ export default {
     },
 
     mounted() {
-        let url = this.base_api_url + this.base_projects_url;
+        let url = this.state.base_api_url + this.state.base_projects_url;
         this.getProjects(url);
 
         waveform.register()
@@ -66,7 +66,7 @@ export default {
             </h2>
             <div class="row" v-if="!loading">
                 <div class="col-4" v-for="project in projects">
-                    <ProjectCard :project="project" :url="base_api_url" />
+                    <ProjectCard :project="project" :url="state.base_api_url" />
                 </div>
 
             </div>
@@ -146,7 +146,7 @@ h2:has(span:hover) {
 }
 
 .show-more {
-    padding-top: 3rem;
+    padding: 3rem 0;
     text-align: center;
 }
 </style>

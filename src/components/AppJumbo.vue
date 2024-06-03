@@ -99,9 +99,9 @@ export default {
 
 
         /* animazione pentagono che entra */
-        setTimeout(() => {
+        /* setTimeout(() => {
             this.animatePentagon = true;
-        }, 1000);
+        }, 1000); */
     },
 
 }

@@ -52,7 +52,9 @@ export default {
 
             <div class="try">
                 <!-- <a href="">PROVA SINGLE PAGE</a> -->
-                <router-link :to="`/projects/${project.slug}`">PROVA</router-link>
+                <!-- <router-link :to="`/projects/${project.slug}`">PROVA</router-link> -->
+                <router-link :to="{ name: 'single-project', params: { slug: project.slug } }">PROVA</router-link>
+
             </div>
 
             <!-- link to github and site -->
