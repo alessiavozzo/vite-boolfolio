@@ -14,8 +14,10 @@ export default {
             axios
                 .get(url)
                 .then(response => {
-                    console.log(response);
+                    console.log(response.data.response);
+                    this.project = response.data.response
                 })
+                .catch(error => console.log(error));
         }
 
     },
@@ -28,9 +30,30 @@ export default {
 </script>
 
 <template>
+    <div class="project-data">
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    {{ project.id }}
+                    {{ project.title }}
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </template>
 
 
 
-<style scoped></style>
+<style scoped>
+.project-data {
+    padding-top: 100px;
+    color: white;
+
+    .card {
+        border: 1px solid white;
+    }
+
+}
+</style>
