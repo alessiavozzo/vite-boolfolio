@@ -3,7 +3,7 @@
 :root {
   --portfolio-bg:
     /* #212428 */
-    #0A192F;
+    rgb(10, 25, 47);
   ;
   --portfolio-main:
     /* rgb(0 234 150) */

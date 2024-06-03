@@ -1,8 +1,10 @@
 <script>
+import { ping } from 'ldrs';
 import CreateBubble from '../assets/js/CreateBubble.js';
 
 export default {
     name: 'AppJumbo',
+    emits: ['scrollToNextSection'],
 
     data() {
         return {
@@ -18,9 +20,10 @@ export default {
             /* mi serve il contesto del canvas per poter fare la grafica 2D sul tag canvas. E' un oggetto che mi dà accesso ai metodi beginPath(), arc(), fill() etc così posso disegnarci le palline*/
             canvasContext: null,
 
-            bubblesNumber: 50,
-            animatePentagon: false
+            bubblesNumber: 250,
+            /* animatePentagon: false, */
 
+            jumboHeight: 0,
         }
     },
     methods: {
@@ -56,11 +59,23 @@ export default {
                 this.bubbles[i].x = this.randomNumber(this.bubbles[i].radius * 2, canvas.width - this.bubbles[i].radius * 2);
                 this.bubbles[i].y = this.randomNumber(this.bubbles[i].radius * 2, canvas.height - this.bubbles[i].radius * 2);
             }
+        },
+
+
+        blockScroll(event) {
+            window.scrollTo(0, 0);
+        },
+        removeAndAddScrollListener() {
+            window.removeEventListener('scroll', this.blockScroll);
+            setTimeout(() => {
+                window.addEventListener('scroll', this.blockScroll)
+            }, 1000);
         }
 
     },
 
     mounted() {
+        ping.register()
 
         const canvas = this.$refs.canvas;
         this.canvasContext = canvas.getContext('2d');
@@ -68,6 +83,8 @@ export default {
         /* dimensioni canvas: larghezza e altezza della finestra */
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+
+        this.jumboHeight = canvas.height
 
         /* genero le bolle con un raggio casuale */
         for (let i = 0; i < this.bubblesNumber; i++) {
@@ -102,6 +119,9 @@ export default {
         /* setTimeout(() => {
             this.animatePentagon = true;
         }, 1000); */
+
+        /* blocco lo scroll */
+        window.addEventListener('scroll', this.blockScroll);
     },
 
 }
@@ -121,6 +141,10 @@ export default {
             </div> -->
 
         </div>
+        <button class="scrollBtn btn" @click="removeAndAddScrollListener(); $emit('scrollToNextSection')">
+            <span>FIND OUT MORE</span>
+            <l-ping size="35" speed="2" color="#47E5AC"></l-ping>
+        </button>
     </section>
 </template>
 
@@ -179,6 +203,18 @@ export default {
 
         }
     } */
+
+    .scrollBtn {
+        position: absolute;
+        left: 50%;
+        bottom: 5%;
+        transform: translateX(-50%);
+        z-index: 2000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
 
 }
 </style>
