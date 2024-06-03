@@ -21,9 +21,9 @@ class CreateBubble {
         /* colore di partenza della bolla */
         const bubbleColor =
         {
-            r: 48,
-            g: 82,
-            b: 168
+            r: 10,
+            g: 25,
+            b: 47
         };
 
         /* colore della bolla quando ci passo sopra */
