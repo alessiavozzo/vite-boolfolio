@@ -50,6 +50,11 @@ export default {
                 </span>
             </div>
 
+            <div class="try">
+                <!-- <a href="">PROVA SINGLE PAGE</a> -->
+                <router-link :to="`/projects/${project.id}`">PROVA</router-link>
+            </div>
+
             <!-- link to github and site -->
             <div class="links">
                 <a :href="project.github_link">

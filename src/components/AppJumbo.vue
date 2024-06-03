@@ -115,10 +115,10 @@ export default {
         <canvas @mousemove="updateMousePosition" ref="canvas" style="width: 100%; height: 100%;"></canvas>
 
         <div class="presentation">
-            <div class="pentagon" :class="{ 'animate-pentagon': animatePentagon }">
+            <!-- <div class="pentagon" :class="{ 'animate-pentagon': animatePentagon }">
                 <img src="https://picsum.photos/600/600" alt="">
-                <!-- foto mia -->
-            </div>
+               
+            </div> -->
 
         </div>
     </section>
@@ -140,7 +140,7 @@ export default {
         position: relative;
     }
 
-    .presentation {
+    /* .presentation {
         position: absolute;
         top: 0;
         left: 0;
@@ -178,7 +178,7 @@ export default {
             transform: translateX(0%) rotate(360deg);
 
         }
-    }
+    } */
 
 }
 </style>
