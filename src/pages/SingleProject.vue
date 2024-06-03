@@ -22,7 +22,7 @@ export default {
 
     },
     mounted() {
-        let url = this.state.base_api_url + this.state.base_projects_url + '/' + this.$route.params.id;
+        let url = this.state.base_api_url + this.state.base_projects_url + '/' + this.$route.params.slug;
         console.log(url);
         this.getSingleProject(url);
     }
