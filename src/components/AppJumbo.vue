@@ -65,11 +65,8 @@ export default {
         blockScroll(event) {
             window.scrollTo(0, 0);
         },
-        removeAndAddScrollListener() {
+        removeScrollListener() {
             window.removeEventListener('scroll', this.blockScroll);
-            setTimeout(() => {
-                window.addEventListener('scroll', this.blockScroll)
-            }, 1000);
         }
 
     },
@@ -141,7 +138,7 @@ export default {
             </div> -->
 
         </div>
-        <button class="scrollBtn btn" @click="removeAndAddScrollListener(); $emit('scrollToNextSection')">
+        <button class="scrollBtn btn space-mono-regular" @click="removeScrollListener(); $emit('scrollToNextSection')">
             <span>FIND OUT MORE</span>
             <l-ping size="35" speed="2" color="#47E5AC"></l-ping>
         </button>
