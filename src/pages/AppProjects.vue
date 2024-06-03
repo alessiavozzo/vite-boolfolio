@@ -40,7 +40,7 @@ export default {
         showMore() {
             if (this.currentPage < this.lastPage) {
                 let nextPage = this.currentPage + 1;
-                let url = `${this.state.base_api_url}${this.state.base_projects_url}?page=${nextPage}`
+                let url = `${state.base_api_url}${state.base_projects_url}?page=${nextPage}`
                 this.getProjects(url);
             }
         }
@@ -48,7 +48,7 @@ export default {
     },
 
     mounted() {
-        let url = this.state.base_api_url + this.state.base_projects_url;
+        let url = state.base_api_url + state.base_projects_url;
         this.getProjects(url);
 
         waveform.register()

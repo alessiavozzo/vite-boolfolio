@@ -19,6 +19,7 @@ export default {
                         this.project = response.data.response;
                     }
                     else {
+                        //console.log(this.$router);
                         this.$router.push({ name: 'not-found' });
                     }
                 })
@@ -41,6 +42,13 @@ export default {
                 <div class="card">
                     {{ project.id }}
                     {{ project.title }}
+                    <!-- {{ project.project_image }}
+                    {{ state.base_api_url + '/storage/' + project.project_image }} -->
+
+
+                    <img v-if="project.project_image && project.project_image.startsWith('uploads')"
+                        :src="state.base_api_url + '/storage/' + project.project_image" alt="">
+                    <img v-else-if="project.project_image" :src="project.project_image" alt="">
                 </div>
             </div>
         </div>
