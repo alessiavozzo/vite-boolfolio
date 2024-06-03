@@ -40,7 +40,7 @@ export default {
 
                 <ul class="nav-right">
                     <li class="nav-item" v-for="option in menu">
-                        <router-link :to="{ name: option.name }">{{ option.text }}</router-link>
+                        <router-link :to="{ name: option.route }">{{ option.text }}</router-link>
                     </li>
                 </ul>
             </div>

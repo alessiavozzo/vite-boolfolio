@@ -19,7 +19,7 @@ export default {
             canvasContext: null,
 
             bubblesNumber: 50,
-
+            animatePentagon: false
 
         }
     },
@@ -95,7 +95,15 @@ export default {
         /* quando ridimensiono la finestra, risponde la funzione resizeCanvas */
         window.addEventListener('resize', this.resizeCanvas);
         //this.resizeCanvas();
-    }
+
+
+
+        /* animazione pentagono che entra */
+        setTimeout(() => {
+            this.animatePentagon = true;
+        }, 1000);
+    },
+
 }
 
 
@@ -103,8 +111,16 @@ export default {
 </script>
 
 <template>
-    <section id="jumbotron" style="width: 100%; height: 800px;">
+    <section id="jumbotron">
         <canvas @mousemove="updateMousePosition" ref="canvas" style="width: 100%; height: 100%;"></canvas>
+
+        <div class="presentation">
+            <div class="pentagon" :class="{ 'animate-pentagon': animatePentagon }">
+                <img src="https://picsum.photos/600/600" alt="">
+                <!-- foto mia -->
+            </div>
+
+        </div>
     </section>
 </template>
 
@@ -114,5 +130,55 @@ export default {
 #jumbotron {
     background-color: var(--portfolio-bg);
     padding-top: 80px;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+
+    canvas {
+        z-index: 20;
+        position: relative;
+    }
+
+    .presentation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 200px;
+        width: 85%;
+        margin: auto;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        .pentagon {
+            width: 500px;
+            height: 476.19px;
+            clip-path: polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%);
+            z-index: 25;
+            transform: translateX(-100vw) rotate(0deg);
+            transition: transform 1.5s ease;
+            position: relative;
+
+            img {
+                filter: grayscale(100);
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: filter 0.5s;
+            }
+
+            &:hover img {
+                filter: grayscale(0);
+            }
+
+        }
+
+        .animate-pentagon {
+            transform: translateX(0%) rotate(360deg);
+
+        }
+    }
+
 }
 </style>

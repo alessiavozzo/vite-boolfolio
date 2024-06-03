@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { waveform } from 'ldrs'
 
 import ProjectCard from "../components/ProjectCard.vue";
 
@@ -14,7 +15,8 @@ export default {
             base_api_url: 'http://127.0.0.1:8000',
             base_projects_url: '/api/projects',
             currentPage: 1,
-            lastPage: null
+            lastPage: null,
+            loading: true
         }
     },
 
@@ -30,6 +32,7 @@ export default {
                     console.log(this.projects);
                     this.currentPage = response.data.projects.current_page;
                     this.lastPage = response.data.projects.last_page;
+                    this.loading = false;
                 })
                 .catch(error => console.log(error));
         },
@@ -47,6 +50,8 @@ export default {
     mounted() {
         let url = this.base_api_url + this.base_projects_url;
         this.getProjects(url);
+
+        waveform.register()
     }
 }
 </script>
@@ -59,10 +64,14 @@ export default {
                 <span>MY PROJECTS</span>
                 <i class="fa-solid fa-gear"></i>
             </h2>
-            <div class="row">
+            <div class="row" v-if="!loading">
                 <div class="col-4" v-for="project in projects">
                     <ProjectCard :project="project" :url="base_api_url" />
                 </div>
+
+            </div>
+            <div class="row" v-else>
+                <l-waveform size="45" stroke="4" speed="1" color="#47E5AC"></l-waveform>
 
             </div>
         </div>

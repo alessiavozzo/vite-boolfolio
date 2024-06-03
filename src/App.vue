@@ -21,7 +21,6 @@ export default {
   <AppHeader />
   <!-- <AppJumbo /> -->
   <router-view></router-view>
-  <footer>footer</footer>
 
 </template>
 
