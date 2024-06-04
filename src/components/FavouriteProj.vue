@@ -211,31 +211,8 @@ export default {
 }
 
 
-.fira-mono-bold {
-    font-family: "Fira Mono", monospace;
-    font-weight: 700;
-    font-style: normal;
-}
-
 h3 {
     font-size: 1.6rem;
     padding-bottom: 1rem;
-}
-
-.blinking-cursor {
-    color: var(--portfolio-card);
-    animation: 1s blink step-end infinite;
-}
-
-@keyframes blink {
-
-    from,
-    to {
-        color: transparent;
-    }
-
-    50% {
-        color: var(--portfolio-card);
-    }
 }
 </style>

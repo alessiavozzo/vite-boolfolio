@@ -24,6 +24,15 @@ export default {
             animatePentagon: false,
 
             jumboHeight: 0,
+
+
+            typeValue: "",
+            typeStatus: false,
+            displayText: "Hello 👋 <br> I'm Alessia Vozzo <br> lorem lorem lorem lorem lorem lorem lorem lorem",
+            typingSpeed: 100,
+            erasingSpeed: 100,
+            newTextDelay: 2000,
+            charIndex: 0
         }
     },
     methods: {
@@ -67,8 +76,29 @@ export default {
         },
         removeScrollListener() {
             window.removeEventListener('scroll', this.blockScroll);
-        }
+        },
 
+        typeText() {
+            /* se la parola non è finita aggiungo una lettera a typevalue e gli do un ritardo per la scrittura della lettera successiva*/
+            if (this.charIndex < this.displayText.length) {
+                if (!this.typeStatus) {
+                    this.typeStatus = true;
+                }
+                this.typeValue += this.displayText.charAt(this.charIndex);
+                this.charIndex += 1;
+                setTimeout(this.typeText, this.typingSpeed);
+
+                /* se la parola è finita, metto un timer per iniziare a cancellare il testo */
+            } else {
+                this.typeStatus = false;
+            }
+        },
+
+    },
+
+    created() {
+        /* imposto un ritardo prima di iniziare a scrivere con typeText */
+        setTimeout(this.typeText, this.newTextDelay + 3500);
     },
 
     mounted() {
@@ -134,10 +164,18 @@ export default {
         <div class="presentation">
             <div class="pentagon" :class="{ 'animate-pentagon': animatePentagon }">
                 <img src="https://picsum.photos/600/600" alt="">
+            </div>
 
+            <div class="name">
+                <h1 class="fira-mono-bold">
+                    <span class="typed-text" v-html="typeValue"></span>
+                    <span class="blinking-cursor">|</span>
+                    <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
+                </h1>
             </div>
 
         </div>
+
         <button class="scrollBtn btn space-mono-regular" @click="removeScrollListener(); $emit('scrollToNextSection')">
             <span>FIND OUT MORE</span>
             <l-ping size="35" speed="2" color="#47E5AC"></l-ping>
@@ -170,7 +208,7 @@ export default {
         margin: auto;
         display: flex;
         justify-content: start;
-        align-items: center;
+        gap: 4rem;
 
         .pentagon {
             width: 500px;
@@ -199,6 +237,23 @@ export default {
             transform: translateX(0%) rotate(-360deg);
 
         }
+
+        .name {
+            width: 60%;
+            display: flex;
+            flex-wrap: wrap;
+            align-self: start;
+            justify-content: end;
+
+            h1 {
+                font-size: 5rem;
+                position: relative;
+                z-index: 2000;
+                align-self: end;
+                text-align: right;
+            }
+        }
+
     }
 
     .scrollBtn {
@@ -212,6 +267,7 @@ export default {
         align-items: center;
         gap: 1rem;
     }
+
 
 }
 </style>
