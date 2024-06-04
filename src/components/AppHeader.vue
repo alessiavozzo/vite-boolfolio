@@ -53,8 +53,8 @@ export default {
 <style scoped>
 header {
     height: 80px;
-    background-color: var(--portfolio-bg);
-    box-shadow: 0px 1px 9px 1px var(--portfolio-main);
+    background-color: var(--portfolio-header);
+    box-shadow: 0px 1px 6px 0.5px var(--portfolio-main);
     z-index: 10000;
     position: fixed;
     width: 100%;

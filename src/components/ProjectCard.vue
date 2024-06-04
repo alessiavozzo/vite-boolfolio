@@ -90,6 +90,7 @@ export default {
     &:hover {
         transform: translateY(-1rem);
         border: 1px solid var(--portfolio-light);
+        box-shadow: -7px 10px 9px 0px var(--portfolio-header);
     }
 
     img {

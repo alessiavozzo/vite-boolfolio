@@ -128,7 +128,7 @@ export default {
 
     .show-all {
         text-align: center;
-        padding-bottom: 3rem;
+        padding: 3rem 0;
 
         a {
             text-decoration: none;

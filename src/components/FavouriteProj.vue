@@ -143,6 +143,7 @@ export default {
                 z-index: 2000;
                 filter: grayscale(0);
                 cursor: pointer;
+                box-shadow: -7px 7px 14px 6px var(--portfolio-header);
             }
         }
     }
@@ -169,7 +170,9 @@ export default {
             padding: 1rem;
             background-color: var(--portfolio-card);
             border-radius: 5px;
-            border: 1px solid var(--portfolio-light);
+            border: 2px inset var(--portfolio-header);
+            outline: 1px solid var(--portfolio-light);
+
         }
 
         .technologies {

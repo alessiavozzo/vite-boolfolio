@@ -21,7 +21,7 @@ export default {
             canvasContext: null,
 
             bubblesNumber: 250,
-            /* animatePentagon: false, */
+            animatePentagon: false,
 
             jumboHeight: 0,
         }
@@ -113,9 +113,9 @@ export default {
 
 
         /* animazione pentagono che entra */
-        /* setTimeout(() => {
+        setTimeout(() => {
             this.animatePentagon = true;
-        }, 1000); */
+        }, 1000);
 
         /* blocco lo scroll */
         window.addEventListener('scroll', this.blockScroll);
@@ -132,10 +132,10 @@ export default {
         <canvas @mousemove="updateMousePosition" ref="canvas" style="width: 100%; height: 100%;"></canvas>
 
         <div class="presentation">
-            <!-- <div class="pentagon" :class="{ 'animate-pentagon': animatePentagon }">
+            <div class="pentagon" :class="{ 'animate-pentagon': animatePentagon }">
                 <img src="https://picsum.photos/600/600" alt="">
-               
-            </div> -->
+
+            </div>
 
         </div>
         <button class="scrollBtn btn space-mono-regular" @click="removeScrollListener(); $emit('scrollToNextSection')">
@@ -161,15 +161,15 @@ export default {
         position: relative;
     }
 
-    /* .presentation {
+    .presentation {
         position: absolute;
         top: 0;
-        left: 0;
+        right: 0;
         padding-top: 200px;
         width: 85%;
         margin: auto;
         display: flex;
-        justify-content: end;
+        justify-content: start;
         align-items: center;
 
         .pentagon {
@@ -177,8 +177,8 @@ export default {
             height: 476.19px;
             clip-path: polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%);
             z-index: 25;
-            transform: translateX(-100vw) rotate(0deg);
-            transition: transform 1.5s ease;
+            transform: translateX(100vw) rotate(0deg);
+            transition: transform 3s ease;
             position: relative;
 
             img {
@@ -196,10 +196,10 @@ export default {
         }
 
         .animate-pentagon {
-            transform: translateX(0%) rotate(360deg);
+            transform: translateX(0%) rotate(-360deg);
 
         }
-    } */
+    }
 
     .scrollBtn {
         position: absolute;
