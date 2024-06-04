@@ -1,6 +1,7 @@
 <script>
 /* import { ping } from 'ldrs'; */
 import CreateBubble from '../assets/js/CreateBubble.js';
+import { state } from "../state.js";
 
 export default {
     name: 'AppJumbo',
@@ -11,6 +12,7 @@ export default {
 
     data() {
         return {
+            state: state,
             /* le mie bolle vanno qua */
             bubbles: [],
 
@@ -150,7 +152,7 @@ export default {
         }, 1000);
 
         /* blocco lo scroll */
-        window.addEventListener('scroll', this.blockScroll);
+        window.addEventListener('scroll', state.blockScroll);
     },
 
 }
@@ -178,7 +180,8 @@ export default {
 
         </div>
 
-        <button class="scrollBtn btn space-mono-regular" @click="removeScrollListener(); $emit('scrollToNextSection')">
+        <button class="scrollBtn btn space-mono-regular"
+            @click="state.removeScrollListener(); $emit('scrollToNextSection')">
             <span>FIND OUT MORE</span>
             <!-- <l-ping size="35" speed="2" color="#47E5AC"></l-ping> -->
         </button>

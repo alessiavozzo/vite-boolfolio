@@ -1,6 +1,7 @@
 <script>
 
 import AppHeader from "./components/AppHeader.vue";
+import AppNavigation from "./components/AppNavigation.vue";
 /* import AppJumbo from "./components/AppJumbo.vue"; */
 
 
@@ -9,6 +10,7 @@ export default {
   name: 'App',
   components: {
     AppHeader,
+    AppNavigation
     /* AppJumbo */
   },
 
@@ -20,7 +22,7 @@ export default {
 
   <AppHeader />
   <!-- <AppJumbo /> -->
-
+  <AppNavigation />
   <!-- <router-view v-slot="{ Component }">
     <transition name="slide" mode="out-in">
       <Component :is="Component" />
