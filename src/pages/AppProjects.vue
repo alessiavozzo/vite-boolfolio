@@ -107,44 +107,7 @@ export default {
 
 }
 
-h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 4rem 0;
-    color: var(--portfolio-light);
 
-    &::before,
-    &::after {
-        content: '';
-        width: 10%;
-        height: 3px;
-        display: block;
-        background-color: currentColor;
-        transition: all 1s;
-    }
-
-    .fa-gear {
-        transition: all 5s;
-    }
-}
-
-
-h2:has(span:hover) {
-
-    &::before {
-        width: 30%;
-    }
-
-    &::after {
-        width: 30%;
-    }
-
-    .fa-gear {
-        transform: rotate(360deg);
-    }
-}
 
 .show-more {
     padding: 3rem 0;

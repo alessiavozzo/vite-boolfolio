@@ -133,8 +133,8 @@ export default {
         }
 
         &:hover {
-            padding: 1rem;
-            border: 1px solid var(--portfolio-main);
+            outline: 1px solid var(--portfolio-main);
+            outline-offset: 5px;
             border-radius: 5px;
 
             img {

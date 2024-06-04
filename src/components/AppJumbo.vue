@@ -220,7 +220,6 @@ export default {
             position: relative;
 
             img {
-                filter: grayscale(100);
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
@@ -253,7 +252,6 @@ export default {
                 text-align: right;
             }
         }
-
     }
 
     .scrollBtn {
