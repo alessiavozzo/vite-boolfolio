@@ -28,9 +28,8 @@ export default {
 
             typeValue: "",
             typeStatus: false,
-            displayText: "Hello 👋 <br> I'm Alessia Vozzo <br> lorem lorem lorem lorem lorem lorem lorem lorem",
-            typingSpeed: 100,
-            erasingSpeed: 100,
+            displayText: `Hello 👋 <br>I'm <span style="color:#47E5AC">Alessia Vozzo</span><br><span style="color:#8892B0; font-size: 2.5rem">lorem lorem lorem lorem lorem lorem lorem lorem</span>`,
+            typingSpeed: 60,
             newTextDelay: 2000,
             charIndex: 0
         }
@@ -250,6 +249,9 @@ export default {
                 z-index: 2000;
                 align-self: end;
                 text-align: right;
+                color: var(--portfolio-light);
+
+
             }
         }
     }
