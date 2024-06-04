@@ -50,10 +50,11 @@ export default {
                 </span>
             </div>
 
-            <div class="try">
+            <div class="go-to-single">
                 <!-- <a href="">PROVA SINGLE PAGE</a> -->
                 <!-- <router-link :to="`/projects/${project.slug}`">PROVA</router-link> -->
-                <router-link :to="{ name: 'single-project', params: { slug: project.slug } }">PROVA</router-link>
+                <router-link class="btn fira-mono-regular"
+                    :to="{ name: 'single-project', params: { slug: project.slug } }">View more</router-link>
 
             </div>
 
@@ -153,6 +154,14 @@ export default {
                 padding: 0.4rem;
                 border-radius: 5px;
             }
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+            padding: .5rem 0;
+            text-decoration: none;
         }
     }
 
