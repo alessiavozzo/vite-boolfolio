@@ -2,7 +2,7 @@
 import axios from "axios";
 import { state } from "../state.js";
 import FavouriteProj from "./FavouriteProj.vue";
-import { waveform } from 'ldrs';
+/* import { waveform } from 'ldrs'; */
 export default {
     name: 'BestProjects',
     components: {
@@ -30,7 +30,7 @@ export default {
         }
     },
     mounted() {
-        waveform.register();
+        /* waveform.register(); */
 
         let url = state.base_api_url + state.fav_projects_url;
         this.getFavourites(url);
@@ -49,13 +49,16 @@ export default {
                 <i class="fa-solid fa-gear"></i>
             </h2>
             <div class="row" v-if="!loading">
-                <div class="col-12" v-for="fav in favourites">
+
+                <div class="col-12" v-for="(fav, index) in favourites" :key="index">
                     <FavouriteProj :fav="fav" />
                 </div>
 
+
             </div>
             <div class="row" v-else>
-                <l-waveform size="45" stroke="4" speed="1" color="#47E5AC"></l-waveform>
+                <!-- <l-waveform size="45" stroke="4" speed="1" color="#47E5AC"></l-waveform> -->
+                loading
             </div>
         </div>
 
