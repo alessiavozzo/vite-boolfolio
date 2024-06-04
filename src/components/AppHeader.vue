@@ -25,6 +25,16 @@ export default {
                 },
             ]
         }
+    },
+    methods: {
+        scrollHandler(route) {
+            if (route === 'home') {
+                state.addScrollListener();
+            }
+            else {
+                state.removeScrollListener();
+            }
+        }
     }
 }
 </script>
@@ -43,7 +53,7 @@ export default {
 
                 <ul class="nav-right">
                     <li class="nav-item space-mono-regular" v-for="option in menu">
-                        <router-link @click="state.removeScrollListener()" :to="{ name: option.route }">{{ option.text
+                        <router-link @click="scrollHandler(option.route)" :to="{ name: option.route }">{{ option.text
                             }}</router-link>
                     </li>
                 </ul>
