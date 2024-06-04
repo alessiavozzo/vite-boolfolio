@@ -10,9 +10,11 @@ export default {
     name: 'AppProjects',
     components: {
         ProjectCard,
+        'l-waveform': waveform,
     },
     data() {
         return {
+
             state: state,
             projects: [],
             currentPage: 1,
@@ -52,7 +54,7 @@ export default {
         let url = state.base_api_url + state.base_projects_url;
         this.getProjects(url);
 
-        waveform.register()
+        /* waveform.register() */
     }
 }
 </script>

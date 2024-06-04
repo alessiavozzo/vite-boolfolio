@@ -5,6 +5,9 @@ import CreateBubble from '../assets/js/CreateBubble.js';
 export default {
     name: 'AppJumbo',
     emits: ['scrollToNextSection'],
+    components: {
+        'l-ping': ping
+    },
 
     data() {
         return {
@@ -101,7 +104,7 @@ export default {
     },
 
     mounted() {
-        ping.register()
+        /* ping.register() */
 
         const canvas = this.$refs.canvas;
         this.canvasContext = canvas.getContext('2d');

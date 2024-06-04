@@ -6,7 +6,8 @@ import { waveform } from 'ldrs';
 export default {
     name: 'BestProjects',
     components: {
-        FavouriteProj
+        FavouriteProj,
+        'l-waveform': waveform
     },
     data() {
         return {
@@ -29,7 +30,7 @@ export default {
         }
     },
     mounted() {
-        waveform.register();
+        /* waveform.register(); */
 
         let url = state.base_api_url + state.fav_projects_url;
         this.getFavourites(url);
