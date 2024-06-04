@@ -1,8 +1,11 @@
 <script>
+import { state } from '../state';
+
 export default {
     name: 'AppHeader',
     data() {
         return {
+            state: state,
             menu: [
                 {
                     text: 'Home',
@@ -40,7 +43,8 @@ export default {
 
                 <ul class="nav-right">
                     <li class="nav-item space-mono-regular" v-for="option in menu">
-                        <router-link :to="{ name: option.route }">{{ option.text }}</router-link>
+                        <router-link @click="state.removeScrollListener()" :to="{ name: option.route }">{{ option.text
+                            }}</router-link>
                     </li>
                 </ul>
             </div>
