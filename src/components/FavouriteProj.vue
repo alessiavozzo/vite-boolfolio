@@ -1,11 +1,62 @@
 <script>
 import { state } from "../state.js"
+
 export default {
     name: 'FavouriteProj',
     props: ['fav'],
+
     data() {
         return {
-            state: state
+            state: state,
+
+            typeValue: "",
+            typeStatus: false,
+            displayText: this.fav.title,
+            typingSpeed: 100,
+            erasingSpeed: 100,
+            newTextDelay: 2000,
+            charIndex: 0
+        }
+    },
+
+    created() {
+        /* imposto un ritardo prima di iniziare a scrivere con typeText */
+        setTimeout(this.typeText, this.newTextDelay + 200);
+    },
+
+    methods: {
+        typeText() {
+            /* se la parola non è finita aggiungo una lettera a typevalue e gli do un ritardo per la scrittura della lettera successiva*/
+            if (this.charIndex < this.displayText.length) {
+                if (!this.typeStatus) {
+                    this.typeStatus = true;
+                }
+                this.typeValue += this.displayText.charAt(this.charIndex);
+                this.charIndex += 1;
+                setTimeout(this.typeText, this.typingSpeed);
+
+                /* se la parola è finita, metto un timer per iniziare a cancellare il testo */
+            } else {
+                this.typeStatus = false;
+                setTimeout(this.eraseText, this.newTextDelay);
+            }
+        },
+
+        eraseText() {
+            /* finchè ci sono lettere da cancellare, levo una lettera per volta da typestring e metto il timer per cancellare la prossima lettera*/
+            if (this.charIndex > 0) {
+                if (!this.typeStatus) {
+                    this.typeStatus = true;
+                }
+                this.typeValue = this.typeValue.substring(0, this.charIndex - 1);
+                this.charIndex -= 1;
+                setTimeout(this.eraseText, this.erasingSpeed);
+
+                /* quando non ci sono più lettere da cancellare, metto il timer per iniziare a scrivere di nuovo */
+            } else {
+                this.typeStatus = false;
+                setTimeout(this.typeText, this.typingSpeed + 1000);
+            }
         }
     }
 }
@@ -23,8 +74,13 @@ export default {
 
         <!-- text part -->
         <div class="text">
+
             <!-- title -->
-            <h3>{{ fav.title }}</h3>
+            <h3 class="fira-mono-bold">
+                <span class="typed-text">{{ typeValue }}</span>
+                <span class="blinking-cursor">|</span>
+                <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
+            </h3>
 
             <!-- description -->
             <div class="description">
@@ -62,7 +118,7 @@ export default {
     align-items: center;
 
     .image {
-        width: 60%;
+        width: 50%;
 
 
         img {
@@ -148,6 +204,35 @@ export default {
                 }
             }
         }
+    }
+}
+
+
+.fira-mono-bold {
+    font-family: "Fira Mono", monospace;
+    font-weight: 700;
+    font-style: normal;
+}
+
+h3 {
+    font-size: 1.6rem;
+    padding-bottom: 1rem;
+}
+
+.blinking-cursor {
+    color: var(--portfolio-card);
+    animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        color: transparent;
+    }
+
+    50% {
+        color: var(--portfolio-card);
     }
 }
 </style>

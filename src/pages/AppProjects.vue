@@ -1,7 +1,8 @@
 <script>
 import axios from 'axios';
 import { state } from '../state.js';
-import { waveform } from 'ldrs'
+import { waveform } from 'ldrs';
+//import "ldrs/waveform";
 
 import ProjectCard from "../components/ProjectCard.vue";
 
@@ -16,7 +17,7 @@ export default {
             projects: [],
             currentPage: 1,
             lastPage: null,
-            loading: true
+            loading: true,
         }
     },
 

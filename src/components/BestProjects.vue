@@ -2,10 +2,11 @@
 import axios from "axios";
 import { state } from "../state.js";
 import FavouriteProj from "./FavouriteProj.vue";
+import { waveform } from 'ldrs';
 export default {
     name: 'BestProjects',
     components: {
-        FavouriteProj,
+        FavouriteProj
     },
     data() {
         return {
@@ -28,6 +29,8 @@ export default {
         }
     },
     mounted() {
+        waveform.register();
+
         let url = state.base_api_url + state.fav_projects_url;
         this.getFavourites(url);
     }
@@ -37,6 +40,8 @@ export default {
 <template>
     <section id="favourites">
         <div class="container">
+
+
             <h2>
                 <i class="fa-solid fa-gear"></i>
                 <span>SOME OF MY BEST WORKS</span>
@@ -51,6 +56,12 @@ export default {
             <div class="row" v-else>
                 <l-waveform size="45" stroke="4" speed="1" color="#47E5AC"></l-waveform>
             </div>
+        </div>
+
+        <div class="show-all">
+            <router-link class="btn" :to="{ name: 'projects' }">
+                Show all
+            </router-link>
         </div>
 
     </section>
@@ -113,8 +124,16 @@ export default {
             }
         }
 
+    }
 
+    .show-all {
+        text-align: center;
+        padding-bottom: 3rem;
 
+        a {
+            text-decoration: none;
+            color: var(--portfolio-main);
+        }
     }
 
 }
