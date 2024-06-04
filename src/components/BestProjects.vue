@@ -1,8 +1,12 @@
 <script>
 import axios from "axios";
 import { state } from "../state.js";
+import FavouriteProj from "./FavouriteProj.vue";
 export default {
     name: 'BestProjects',
+    components: {
+        FavouriteProj,
+    },
     data() {
         return {
             state: state,
@@ -40,15 +44,7 @@ export default {
             </h2>
             <div class="row" v-if="!loading">
                 <div class="col-12" v-for="fav in favourites">
-                    <div class="favourite-info">
-                        <!-- {{ fav.title }} -->
-                        <div class="image">
-
-                            <img v-if="fav.project_image && fav.project_image.startsWith('uploads')"
-                                :src="state.base_api_url + '/storage/' + fav.project_image" alt="">
-                            <img v-else-if="fav.project_image" :src="fav.project_image" alt="">
-                        </div>
-                    </div>
+                    <FavouriteProj :fav="fav" />
                 </div>
 
             </div>
@@ -117,19 +113,7 @@ export default {
             }
         }
 
-        .favourite-info {
-            padding: 3rem 0;
 
-            .image {
-                width: 60%;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-        }
 
     }
 
