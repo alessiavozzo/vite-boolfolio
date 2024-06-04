@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { state } from '../state.js';
 import { waveform } from 'ldrs';
+/* import * as LDRS from 'ldrs' */
 //import "ldrs/waveform";
 
 import ProjectCard from "../components/ProjectCard.vue";
@@ -10,7 +11,7 @@ export default {
     name: 'AppProjects',
     components: {
         ProjectCard,
-        'l-waveform': waveform,
+        /* 'l-waveform': waveform, */
     },
     data() {
         return {
@@ -51,10 +52,11 @@ export default {
     },
 
     mounted() {
+        console.log(waveform);
         let url = state.base_api_url + state.base_projects_url;
         this.getProjects(url);
 
-        /* waveform.register() */
+        waveform.register()
     }
 }
 </script>

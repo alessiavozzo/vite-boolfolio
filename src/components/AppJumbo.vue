@@ -6,7 +6,7 @@ export default {
     name: 'AppJumbo',
     emits: ['scrollToNextSection'],
     components: {
-        'l-ping': ping
+        /* 'l-ping': ping */
     },
 
     data() {
@@ -104,7 +104,7 @@ export default {
     },
 
     mounted() {
-        /* ping.register() */
+        ping.register()
 
         const canvas = this.$refs.canvas;
         this.canvasContext = canvas.getContext('2d');
