@@ -1,5 +1,5 @@
 <script>
-
+import { state } from "./state";
 import AppHeader from "./components/AppHeader.vue";
 import AppNavigation from "./components/AppNavigation.vue";
 /* import AppJumbo from "./components/AppJumbo.vue"; */
@@ -8,6 +8,11 @@ import AppNavigation from "./components/AppNavigation.vue";
 
 export default {
   name: 'App',
+  data() {
+    return {
+      state
+    }
+  },
   components: {
     AppHeader,
     AppNavigation,
@@ -20,9 +25,9 @@ export default {
 
 <template>
 
-  <AppHeader />
+  <AppHeader v-if="state.scroll_blocked == false" />
   <!-- <AppJumbo/> -->
-  <AppNavigation />
+  <AppNavigation v-if="state.scroll_blocked" />
   <router-view v-slot="{ Component }">
     <transition name="slide" mode="out-in">
       <Component :is="Component" />
