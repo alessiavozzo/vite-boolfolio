@@ -61,6 +61,10 @@ ul {
     padding: 2rem 0;
     color: var(--portfolio-light);
 
+    @media (max-width: 768px) {
+        display: none;
+    }
+
     li {
         display: flex;
         align-items: baseline;

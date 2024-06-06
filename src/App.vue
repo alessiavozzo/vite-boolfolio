@@ -8,16 +8,31 @@ import AppNavigation from "./components/AppNavigation.vue";
 
 export default {
   name: 'App',
-  data() {
-    return {
-      state
-    }
-  },
   components: {
     AppHeader,
     AppNavigation,
     /*  AppJumbo */
   },
+  data() {
+    return {
+      state: state,
+      isPhone: window.matchMedia('(max-width: 768px)').matches
+    }
+  },
+  methods: {
+    checkScreen(e) {
+      this.isPhone = e.matches
+    },
+  },
+  computed: {
+    showHeader() {
+      return !state.scroll_blocked || this.isPhone;
+    }
+  },
+  created() {
+    let currentScreen = window.matchMedia('(max-width: 768px)');
+    currentScreen.addEventListener('change', this.checkScreen);
+  }
 
 
 }
@@ -25,9 +40,9 @@ export default {
 
 <template>
 
-  <AppHeader v-if="state.scroll_blocked == false" />
+  <AppHeader v-if="showHeader" />
   <!-- <AppJumbo/> -->
-  <AppNavigation v-if="state.scroll_blocked" />
+  <AppNavigation v-if="state.scroll_blocked && !isPhone" />
   <router-view v-slot="{ Component }">
     <transition name="slide" mode="out-in">
       <Component :is="Component" />

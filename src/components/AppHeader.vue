@@ -69,7 +69,7 @@ header {
     height: 80px;
     background-color: var(--portfolio-header);
     box-shadow: 0px 1px 6px 0.5px var(--portfolio-main);
-    z-index: 10000;
+    z-index: 10000000;
     position: fixed;
     width: 100%;
 
