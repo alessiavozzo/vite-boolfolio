@@ -31,12 +31,21 @@ export default {
             jumboHeight: 0,
 
 
-            typeValue: "",
-            typeStatus: false,
-            displayText: `Hello 👋 <br>I'm <span style="color:#47E5AC">Alessia Vozzo</span><br><span style="color:#8892B0; font-size: 2.5rem">lorem lorem lorem lorem lorem lorem lorem lorem</span>`,
+            /* typeValue: "",
+            typeStatus: false, */
+            displayText: [
+                `Hello 👋 <br>I'm <span style="color:#47E5AC">Alessia Vozzo</span><br>`,
+                `Fullstack Web Developer`
+            ]/* `Hello 👋 <br>I'm <span style="color:#47E5AC">Alessia Vozzo</span><br><span style="color:#8892B0; font-size: 2rem">Fullstack Web Developer</span>` */,
             typingSpeed: 60,
-            newTextDelay: 2000,
-            charIndex: 0
+            newTextDelay: 1500,
+            charIndex1: 0,
+            charIndex2: 0,
+            typeStatus1: false,
+            typeStatus2: false,
+            typeValue1: '',
+            typeValue2: ''
+
         }
     },
     methods: {
@@ -83,26 +92,50 @@ export default {
         },
 
         typeText() {
-            /* se la parola non è finita aggiungo una lettera a typevalue e gli do un ritardo per la scrittura della lettera successiva*/
-            if (this.charIndex < this.displayText.length) {
+
+            /* per la prima frase dell'array */
+            if (!this.typeStatus1) {
+                if (this.charIndex1 < this.displayText[0].length) {
+                    this.typeValue1 += this.displayText[0].charAt(this.charIndex1);
+                    this.charIndex1 += 1;
+                    setTimeout(this.typeText, this.typingSpeed);
+                }
+                else {
+                    this.typeStatus1 = true;
+                    this.charIndex2 = 0;
+                    setTimeout(this.typeText, this.newTextDelay)
+                }
+            }
+            else {
+                if (this.charIndex2 < this.displayText[1].length) {
+                    this.typeValue2 += this.displayText[1].charAt(this.charIndex2);
+                    this.charIndex2 += 1;
+                    setTimeout(this.typeText, this.typingSpeed);
+                }
+                else {
+                    this.typeStatus2 = false
+                }
+            }
+
+            /* if (this.charIndex < this.displayText[this.displayTextIndex].length) {
                 if (!this.typeStatus) {
                     this.typeStatus = true;
                 }
-                this.typeValue += this.displayText.charAt(this.charIndex);
+                this.typeValue += this.displayText[this.displayTextIndex].charAt(this.charIndex);
                 this.charIndex += 1;
                 setTimeout(this.typeText, this.typingSpeed);
 
-                /* se la parola è finita, metto un timer per iniziare a cancellare il testo */
+
             } else {
                 this.typeStatus = false;
-            }
+            } */
         },
 
     },
 
     created() {
         /* imposto un ritardo prima di iniziare a scrivere con typeText */
-        setTimeout(this.typeText, this.newTextDelay + 3500);
+        setTimeout(this.typeText, this.newTextDelay + 2000);
     },
 
     mounted() {
@@ -149,7 +182,7 @@ export default {
         /* animazione pentagono che entra */
         setTimeout(() => {
             this.animatePentagon = true;
-        }, 1000);
+        }, 500);
 
         /* blocco lo scroll */
         window.addEventListener('scroll', state.blockScroll);
@@ -162,8 +195,10 @@ export default {
 </script>
 
 <template>
-    <section id="jumbotron">
+    <section id="jumbotron" :style="{ paddingTop: state.scroll_blocked ? '0' : '80px' }">
         <canvas @mousemove="updateMousePosition" ref="canvas" style="width: 100%; height: 100%;"></canvas>
+
+
 
         <div class="presentation">
             <div class="pentagon" :class="{ 'animate-pentagon': animatePentagon }">
@@ -172,10 +207,16 @@ export default {
 
             <div class="name">
                 <h1 class="fira-mono-bold">
-                    <span class="typed-text" v-html="typeValue"></span>
-                    <span class="blinking-cursor">|</span>
-                    <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
+                    <span class="typed-text" v-html="typeValue1"></span>
+                    <span class="blinking-cursor" :style="{ display: typeStatus1 ? 'none' : '' }">|</span>
+                    <span class="cursor" :class="{ typing: typeStatus1 }">&nbsp;</span>
                 </h1>
+
+                <div class="subtitle fira-mono-bold" v-if="typeStatus1">
+                    <span class="typed-text">{{ typeValue2 }}</span>
+                    <span class="blinking-cursor">|</span>
+                    <span class="cursor" :class="{ typing: typeStatus2 }">&nbsp;</span>
+                </div>
             </div>
 
         </div>
@@ -185,6 +226,8 @@ export default {
             <span>FIND OUT MORE</span>
             <l-ping size="35" speed="2" color="#47E5AC"></l-ping>
         </button>
+
+
     </section>
 </template>
 
@@ -193,7 +236,6 @@ export default {
 <style scoped>
 #jumbotron {
     background-color: var(--portfolio-bg);
-    padding-top: 80px;
     width: 100%;
     height: 100vh;
     overflow: hidden;
@@ -207,13 +249,26 @@ export default {
     .presentation {
         position: absolute;
         top: 0;
-        right: 0;
-        padding-top: 200px;
+        padding-top: 150px;
         width: 85%;
         margin: auto;
         display: flex;
         justify-content: start;
         gap: 4rem;
+        transform: translate(-50%);
+        left: 50%;
+        max-width: 1400px;
+        z-index: 100000;
+
+        @media (max-width: 1176px) {
+            flex-direction: column;
+            padding-top: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            padding-top: 120px;
+        }
 
         .pentagon {
             width: 500px;
@@ -221,18 +276,24 @@ export default {
             clip-path: polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%);
             z-index: 25;
             transform: translateX(100vw) rotate(0deg);
-            transition: transform 3s ease;
+            transition: transform 2s ease;
             position: relative;
+            z-index: 100000;
+
+            @media (max-width: 1400px) {
+                width: 450px;
+                height: 428.57px;
+            }
+
+            @media (max-width: 1176px) {
+                width: 300px;
+                height: 285.71px;
+            }
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                transition: filter 0.5s;
-            }
-
-            &:hover img {
-                filter: grayscale(0);
             }
 
         }
@@ -248,16 +309,45 @@ export default {
             flex-wrap: wrap;
             align-self: start;
             justify-content: end;
+            flex-direction: column;
 
-            h1 {
-                font-size: 5rem;
+            @media (max-width: 1176px) {
+                width: 95%;
+                justify-content: center;
+                align-self: center;
+            }
+
+            h1,
+            .subtitle {
                 position: relative;
                 z-index: 2000;
                 align-self: end;
                 text-align: right;
+                z-index: 100000;
+
+                @media (max-width: 1176px) {
+                    text-align: center;
+                    align-self: center;
+                }
+            }
+
+            h1 {
                 color: var(--portfolio-light);
+                font-size: 4.5rem;
+                padding-bottom: 1.5rem;
 
+                @media (max-width: 1176px) {
+                    font-size: 3rem;
+                }
+            }
 
+            .subtitle {
+                color: var(--portfolio-text-secondary);
+                font-size: 4rem;
+
+                @media (max-width: 1176px) {
+                    font-size: 2.3rem;
+                }
             }
         }
     }
