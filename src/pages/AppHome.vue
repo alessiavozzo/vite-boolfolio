@@ -23,15 +23,17 @@ export default {
             }
         },
 
-    },
-
+    }
 }
 </script>
 
 <template>
-    <AppJumbo ref="appJumbo" @scrollToNextSection="scrollToNextSection" />
-    <div ref="bestProjects">
-        <BestProjects />
+    <div>
+        <AppJumbo ref="appJumbo" @scrollToNextSection="scrollToNextSection" />
+        <div ref="bestProjects">
+            <BestProjects />
+        </div>
+
     </div>
 </template>
 

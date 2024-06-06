@@ -1,5 +1,5 @@
 <script>
-/* import { ping } from 'ldrs'; */
+import { ping } from 'ldrs';
 import CreateBubble from '../assets/js/CreateBubble.js';
 import { state } from "../state.js";
 
@@ -7,7 +7,7 @@ export default {
     name: 'AppJumbo',
     emits: ['scrollToNextSection'],
     components: {
-        /* 'l-ping': ping */
+        'l-ping': ping
     },
 
     data() {
@@ -106,7 +106,7 @@ export default {
     },
 
     mounted() {
-        /* ping.register() */
+        ping.register()
 
         const canvas = this.$refs.canvas;
         this.canvasContext = canvas.getContext('2d');
@@ -183,7 +183,7 @@ export default {
         <button class="scrollBtn btn space-mono-regular"
             @click="state.removeScrollListener(); $emit('scrollToNextSection')">
             <span>FIND OUT MORE</span>
-            <!-- <l-ping size="35" speed="2" color="#47E5AC"></l-ping> -->
+            <l-ping size="35" speed="2" color="#47E5AC"></l-ping>
         </button>
     </section>
 </template>

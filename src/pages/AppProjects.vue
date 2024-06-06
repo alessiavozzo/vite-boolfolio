@@ -52,7 +52,7 @@ export default {
     },
 
     mounted() {
-        console.log(waveform);
+        /* console.log(waveform); */
         let url = state.base_api_url + state.base_projects_url;
         this.getProjects(url);
 
