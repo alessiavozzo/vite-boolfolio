@@ -1,15 +1,24 @@
 <script>
+import { state } from '../state';
+import axios from 'axios';
 export default {
     name: 'AppContacts',
     data() {
         return {
+            state,
             typeValue: "",
             typeStatus: false,
             displayText: "Contact me",
             typingSpeed: 100,
             erasingSpeed: 100,
             newTextDelay: 2000,
-            charIndex: 0
+            charIndex: 0,
+
+            name: '',
+            email: '',
+            message: '',
+            success: false,
+            errors: false
         }
     },
     methods: {
@@ -28,9 +37,38 @@ export default {
                 this.typeStatus = false;
             }
         },
+
+        sendMessage() {
+            let url = state.base_api_url + state.contacts_url;
+            console.log(url);
+            const userData =
+            {
+                name: this.name,
+                email: this.email,
+                message: this.message
+            }
+
+            axios
+                .post(url, userData)
+                .then(response => {
+                    console.log(response);
+                    if (response.data.success) {
+                        this.name = '';
+                        this.email = '';
+                        this.message = '';
+                        this.success = response.data.message;
+                    }
+                    else {
+                        this.success = false;
+                        this.errors = response.data.errors;
+                    }
+                })
+                .catch(error => console.log(error));
+        }
     },
     created() {
         setTimeout(this.typeText, this.newTextDelay + 200);
+
     }
 }
 </script>
@@ -45,19 +83,20 @@ export default {
             </h3>
 
             <div class="form-container fira-mono-regular">
-                <form action="" method="">
+
+                <form action="" method="" @submit.prevent="sendMessage()">
                     <div class="user-data">
                         <div class="input-group">
-                            <input type="text" name="name" id="name" required>
+                            <input type="text" name="name" id="name" v-model="name" required>
                             <label>Username</label>
                         </div>
                         <div class="input-group">
-                            <input type="email" name="email" id="email" required>
+                            <input type="email" name="email" id="email" v-model="email" required>
                             <label>Email</label>
                         </div>
                     </div>
                     <div class="message">
-                        <input type="text" name="message" id="message" required>
+                        <input type="text" name="message" id="message" v-model="message" required>
                         <label>Your message</label>
                     </div>
 
