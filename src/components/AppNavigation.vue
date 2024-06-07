@@ -39,13 +39,16 @@ export default {
 </script>
 
 <template>
-    <ul class="nav-right">
-        <li class="nav-item space-mono-regular" :class="{ active: $route.name === option.route }"
-            v-for="option in menu">
-            <router-link @click="scrollHandler(option.route)" :to="{ name: option.route }">{{ option.text
-                }}</router-link>
-        </li>
-    </ul>
+    <div>
+        <ul class="nav-right">
+            <li class="nav-item space-mono-regular" :class="{ active: $route.name === option.route }"
+                v-for="option in menu">
+                <router-link @click="scrollHandler(option.route)" :to="{ name: option.route }">{{ option.text
+                    }}</router-link>
+            </li>
+        </ul>
+
+    </div>
 </template>
 
 

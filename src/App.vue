@@ -26,12 +26,13 @@ export default {
   },
   computed: {
     showHeader() {
-      return !state.scroll_blocked || this.isPhone;
+      return !state.scroll_blocked || this.isPhone || this.$route.name !== 'home';
     }
   },
   created() {
     let currentScreen = window.matchMedia('(max-width: 768px)');
     currentScreen.addEventListener('change', this.checkScreen);
+    console.log(this.$route.name);
   }
 
 
@@ -42,7 +43,8 @@ export default {
 
   <AppHeader v-if="showHeader" />
   <!-- <AppJumbo/> -->
-  <AppNavigation v-if="state.scroll_blocked && !isPhone" />
+  <AppNavigation v-if="state.scroll_blocked && !isPhone && $route.name === 'home'" />
+  <!-- metterlo nel jumbo? -->
   <router-view v-slot="{ Component }">
     <transition name="slide" mode="out-in">
       <Component :is="Component" />

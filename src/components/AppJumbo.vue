@@ -129,6 +129,7 @@ export default {
             } else {
                 this.typeStatus = false;
             } */
+
         },
 
     },
@@ -220,6 +221,7 @@ export default {
             </div>
 
         </div>
+
 
         <button class="scrollBtn btn space-mono-regular"
             @click="state.removeScrollListener(); $emit('scrollToNextSection')">
