@@ -183,6 +183,8 @@ export default {
             gap: 0.5rem;
             justify-content: end;
             font-size: 0.8rem;
+            width: 80%;
+            align-self: end;
 
             span {
                 border: 1px solid var(--portfolio-main);
