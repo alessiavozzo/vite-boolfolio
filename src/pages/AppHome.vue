@@ -2,11 +2,13 @@
 
 import AppJumbo from "../components/AppJumbo.vue";
 import BestProjects from "../components/BestProjects.vue";
+import AppSkills from "../components/AppSkills.vue";
 export default {
     name: 'AppHome',
     components: {
         AppJumbo,
-        BestProjects
+        BestProjects,
+        AppSkills
     },
     data() {
         return {
@@ -30,6 +32,9 @@ export default {
 <template>
     <div>
         <AppJumbo ref="appJumbo" @scrollToNextSection="scrollToNextSection" />
+        <div ref="skills">
+            <AppSkills />
+        </div>
         <div ref="bestProjects">
             <BestProjects />
         </div>

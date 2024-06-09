@@ -31,6 +31,7 @@ export default {
     },
     mounted() {
         waveform.register();
+
         let url = state.base_api_url + state.fav_projects_url;
         console.log(url);
         this.getFavourites(url);

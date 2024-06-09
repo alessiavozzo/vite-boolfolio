@@ -5,6 +5,7 @@ export const state = reactive({
     base_projects_url: '/api/projects',
     fav_projects_url: '/api/favourites',
     contacts_url: '/api/contacts',
+    technologies_url: '/api/technologies',
 
     scroll_blocked: true,
 
