@@ -32,11 +32,11 @@ export default {
 <template>
     <div>
         <AppJumbo ref="appJumbo" @scrollToNextSection="scrollToNextSection" />
-        <div ref="skills">
-            <AppSkills />
-        </div>
         <div ref="bestProjects">
             <BestProjects />
+        </div>
+        <div ref="skills">
+            <AppSkills />
         </div>
 
     </div>

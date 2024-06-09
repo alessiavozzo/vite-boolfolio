@@ -14,7 +14,7 @@ export default {
     data() {
         return {
             state: state,
-            skills: []
+            skills: [],
         }
     },
     methods: {
@@ -28,7 +28,7 @@ export default {
                     this.loading = false
                 })
                 .catch(error => console.log(error));
-        }
+        },
     },
     mounted() {
         let url = state.base_api_url + state.technologies_url;
@@ -39,18 +39,29 @@ export default {
 
 <template>
     <section id="skills">
-        <Carousel :autoplay="1000" :wrap-around="true" :itemsToScroll="1" :itemsToShow="8" :transition="1000"
-            :pauseAutoplayOnHover="true" :mouseDrag="true">
+        <div class="container">
+            <h3 class="space-mono-regular">
+                MY SKILLS
+            </h3>
+
+        </div>
+
+        <Carousel :autoplay="800" :wrap-around="true" :itemsToScroll="1" :itemsToShow="8" :transition="800"
+            :pauseAutoplayOnHover="true" :mouseDrag="true" snapAlign="start">
 
             <Slide v-for="(skill, index) in skills" :key="index">
-                <!-- <img class="carousel__item" style="width: 40px; border: 1px solid red;"> -->
-                <img class="carousel__item" width="100px" v-if="skill.image && skill.image.startsWith('uploads')"
-                    :src="state.base_api_url + '/storage/' + skill.image" alt="">
-                <img class="carousel__item" width="100px" v-else-if="skill.image && skill.image.startsWith('img')"
-                    :src="state.base_api_url + '/' + skill.image" alt="">
+                <div class="box">
+                    <span></span>
+                    <img class="carousel__item" v-if="skill.image && skill.image.startsWith('uploads')"
+                        :src="state.base_api_url + '/storage/' + skill.image" alt="">
+                    <img class="carousel__item" v-else-if="skill.image && skill.image.startsWith('img')"
+                        :src="state.base_api_url + '/' + skill.image" alt="">
+                </div>
             </Slide>
 
         </Carousel>
+
+
 
     </section>
 
@@ -58,4 +69,75 @@ export default {
 
 
 
-<style scoped></style>
+<style scoped>
+#skills {
+    padding-bottom: 80px;
+
+    .container {
+        max-width: 1200px;
+
+        h3 {
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--portfolio-light);
+        }
+    }
+}
+
+.box {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-color: var(--portfolio-header);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-image: conic-gradient(transparent, transparent, transparent, var(--portfolio-main));
+        animation: rotate 4s linear infinite;
+        animation-delay: -2s;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-image: conic-gradient(transparent, transparent, transparent, var(--portfolio-main));
+        animation: rotate 4s linear infinite;
+    }
+
+    span {
+        position: absolute;
+        inset: 2px;
+        background-color: var(--portfolio-header);
+        border-radius: 5px;
+        z-index: 1;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        padding: 0.5rem;
+        z-index: 2;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+</style>

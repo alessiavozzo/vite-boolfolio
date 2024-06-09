@@ -130,16 +130,15 @@ body {
 
 h2 {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 1rem;
   padding: 4rem 0;
   color: var(--portfolio-light);
+  font-size: 3rem;
 
-  &::before,
   &::after {
     content: '';
-    width: 10%;
+    width: 0%;
     height: 3px;
     display: block;
     background-color: currentColor;
@@ -153,10 +152,6 @@ h2 {
 
 
 h2:has(span:hover) {
-
-  &::before {
-    width: 30%;
-  }
 
   &::after {
     width: 30%;

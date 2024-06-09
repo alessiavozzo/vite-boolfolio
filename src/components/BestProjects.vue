@@ -13,7 +13,7 @@ export default {
         return {
             state: state,
             favourites: [],
-            loading: true
+            loading: true,
         }
     },
     methods: {
@@ -27,7 +27,8 @@ export default {
                     this.loading = false
                 })
                 .catch(error => console.log(error));
-        }
+        },
+
     },
     mounted() {
         waveform.register();
@@ -43,9 +44,7 @@ export default {
     <section id="favourites">
         <div class="container">
 
-
-            <h2>
-                <i class="fa-solid fa-gear"></i>
+            <h2 class="space-mono-regular">
                 <span>SOME OF MY BEST WORKS</span>
                 <i class="fa-solid fa-gear"></i>
             </h2>
@@ -82,6 +81,11 @@ export default {
 
     .container {
         max-width: 1200px;
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--portfolio-light);
+        }
 
         .row {
             .col-12 {
