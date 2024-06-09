@@ -53,7 +53,8 @@ export default {
 
                 <ul class="nav-right">
                     <li class="nav-item space-mono-regular" v-for="option in menu">
-                        <router-link @click="scrollHandler(option.route)" :to="{ name: option.route }">{{ option.text
+                        <router-link @click="scrollHandler(option.route)" :to="{ name: option.route }"
+                            :class="{ active: $route.name === option.route }">{{ option.text
                             }}</router-link>
                     </li>
                 </ul>
@@ -100,7 +101,34 @@ header {
             a {
                 text-decoration: none;
                 color: var(--portfolio-main);
+                position: relative;
+                display: inline-block;
+                transition: all 0.3s;
+
+                &::after {
+                    content: '';
+                    width: 5px;
+                    height: 5px;
+                    background-color: var(--portfolio-main);
+                    position: absolute;
+                    left: 50%;
+                    bottom: -0.5rem;
+                    opacity: 0;
+                    transform: translateX(-50%);
+                }
+
+                &:hover {
+                    color: var(--portfolio-light);
+                    transform: translateY(-0.25rem);
+                }
+
+                &:hover::after {
+                    opacity: 1;
+                    color: var(--portfolio-main);
+                }
             }
+
+            .active {}
         }
 
     }
