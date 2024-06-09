@@ -50,22 +50,25 @@ export default {
                 </span>
             </div>
 
-            <div class="go-to-single">
-                <!-- <a href="">PROVA SINGLE PAGE</a> -->
-                <!-- <router-link :to="`/projects/${project.slug}`">PROVA</router-link> -->
-                <router-link class="btn fira-mono-regular"
-                    :to="{ name: 'single-project', params: { slug: project.slug } }">View more</router-link>
+            <div class="bottom-card">
+                <div class="go-to-single">
+                    <!-- <a href="">PROVA SINGLE PAGE</a> -->
+                    <!-- <router-link :to="`/projects/${project.slug}`">PROVA</router-link> -->
+                    <router-link class="btn fira-mono-regular"
+                        :to="{ name: 'single-project', params: { slug: project.slug } }">View more</router-link>
 
-            </div>
+                </div>
 
-            <!-- link to github and site -->
-            <div class="links">
-                <a :href="project.github_link">
-                    <i class="fa-brands fa-github fa-xl"></i>
-                </a>
-                <a :href="project.project_link">
-                    <i class="fa-solid fa-arrow-up-right-from-square fa-xl"></i>
-                </a>
+                <!-- link to github and site -->
+                <div class="links">
+                    <a :href="project.github_link">
+                        <i class="fa-brands fa-github fa-xl"></i>
+                    </a>
+                    <a :href="project.project_link">
+                        <i class="fa-solid fa-arrow-up-right-from-square fa-xl"></i>
+                    </a>
+
+                </div>
 
             </div>
 
@@ -122,23 +125,28 @@ export default {
             color: var(--portfolio-text-secondary);
         }
 
-        .links {
-            display: flex;
-            justify-content: end;
-            gap: 2rem;
-            align-items: center;
+        .bottom-card {
             margin-top: auto;
 
-            a {
-                text-decoration: none;
-                color: var(--portfolio-light);
-                cursor: pointer;
+            .links {
+                display: flex;
+                justify-content: end;
+                gap: 2rem;
+                align-items: center;
+                /* margin-top: auto; */
 
-                &:hover {
-                    color: var(--portfolio-main);
+                a {
+                    text-decoration: none;
+                    color: var(--portfolio-light);
+                    cursor: pointer;
+
+                    &:hover {
+                        color: var(--portfolio-main);
+                    }
                 }
             }
         }
+
 
         .technologies {
             display: flex;

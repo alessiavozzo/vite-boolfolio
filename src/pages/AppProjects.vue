@@ -21,6 +21,14 @@ export default {
             currentPage: 1,
             lastPage: null,
             loading: true,
+
+            typeValue: "",
+            typeStatus: false,
+            displayText: "MY PROJECTS",
+            typingSpeed: 100,
+            erasingSpeed: 100,
+            newTextDelay: 2000,
+            charIndex: 0,
         }
     },
 
@@ -41,6 +49,22 @@ export default {
                 .catch(error => console.log(error));
         },
 
+        typeText() {
+            /* se la parola non è finita aggiungo una lettera a typevalue e gli do un ritardo per la scrittura della lettera successiva*/
+            if (this.charIndex < this.displayText.length) {
+                if (!this.typeStatus) {
+                    this.typeStatus = true;
+                }
+                this.typeValue += this.displayText.charAt(this.charIndex);
+                this.charIndex += 1;
+                setTimeout(this.typeText, this.typingSpeed);
+
+                /* se la parola è finita, metto un timer per iniziare a cancellare il testo */
+            } else {
+                this.typeStatus = false;
+            }
+        },
+
         showMore() {
             if (this.currentPage < this.lastPage) {
                 let nextPage = this.currentPage + 1;
@@ -50,7 +74,10 @@ export default {
         }
         /* mi sa che mi serve un'altra chiamata per poter fare anche lo show less perchè mi serve un array temporaneo in cui salvare i dati aggiunti con showMore */
     },
+    created() {
+        setTimeout(this.typeText, this.newTextDelay + 200);
 
+    },
     mounted() {
         /* console.log(waveform); */
         let url = state.base_api_url + state.base_projects_url;
@@ -64,11 +91,11 @@ export default {
 <template>
     <section id="projects">
         <div class="container">
-            <h2>
-                <i class="fa-solid fa-gear"></i>
-                <span>MY PROJECTS</span>
-                <i class="fa-solid fa-gear"></i>
-            </h2>
+            <h3>
+                <span class="typed-text space-mono-regular">{{ typeValue }}</span>
+                <span class="blinking-cursor">|</span>
+                <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
+            </h3>
             <div class="row" v-if="!loading">
                 <div class="col-4" v-for="project in projects">
                     <ProjectCard :project="project" :url="state.base_api_url" />
@@ -98,6 +125,15 @@ export default {
 
     .container {
         max-width: 1200px;
+
+        h3 {
+            padding: 5rem 0;
+            font-size: 3rem;
+
+            .typed-text {
+                color: var(--portfolio-main);
+            }
+        }
 
         .row {
             gap: 3rem;
