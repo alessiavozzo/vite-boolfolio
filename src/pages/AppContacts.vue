@@ -160,6 +160,7 @@ export default {
                 border-bottom: 1px solid var(--portfolio-light);
                 outline: none;
                 background: transparent;
+                color: var(--portfolio-light);
             }
 
             label {
@@ -175,7 +176,7 @@ export default {
 
             input:focus~label,
             input:valid~label {
-                top: -1.5rem;
+                top: -2rem;
                 left: 0;
                 color: var(--portfolio-main);
                 font-size: 12px;
