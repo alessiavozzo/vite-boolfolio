@@ -39,14 +39,9 @@ export default {
 
 <template>
     <section id="skills">
-        <Carousel :autoplay="2000" :wrap-around="true" :itemsToScroll="1" :itemsToShow="8">
-            <!-- <Slide v-for="slide in 10" :key="slide">
-                <div class="carousel__item" style="width: 40px; border: 1px solid red;">{{ slide }}</div>
-            </Slide>
+        <Carousel :autoplay="1000" :wrap-around="true" :itemsToScroll="1" :itemsToShow="8" :transition="1000"
+            :pauseAutoplayOnHover="true" :mouseDrag="true">
 
-            <template #addons>
-                <Pagination />
-            </template> -->
             <Slide v-for="(skill, index) in skills" :key="index">
                 <!-- <img class="carousel__item" style="width: 40px; border: 1px solid red;"> -->
                 <img class="carousel__item" width="100px" v-if="skill.image && skill.image.startsWith('uploads')"
@@ -55,21 +50,8 @@ export default {
                     :src="state.base_api_url + '/' + skill.image" alt="">
             </Slide>
 
-            <template #addons>
-                <Pagination />
-            </template>
         </Carousel>
 
-        <div v-for="skill in skills">
-            <!-- {{ skill.name }} -->
-
-            <div class="image">
-                <img width="100px" v-if="skill.image && skill.image.startsWith('uploads')"
-                    :src="state.base_api_url + '/storage/' + skill.image" alt="">
-                <img width="100px" v-else-if="skill.image && skill.image.startsWith('img')"
-                    :src="state.base_api_url + '/' + skill.image" alt="">
-            </div>
-        </div>
     </section>
 
 </template>
