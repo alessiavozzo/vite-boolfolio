@@ -127,7 +127,7 @@ export default {
         max-width: 1200px;
 
         h3 {
-            padding: 5rem 0;
+            padding: 4rem 0;
             font-size: 3rem;
 
             .typed-text {
